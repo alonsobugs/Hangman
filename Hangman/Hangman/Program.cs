@@ -11,16 +11,16 @@ namespace Hangman
         static void Main(string[] args)
         {
 
-            string PalabraAdivinar = ;
+            string PalabraAdivinar = "";
             string PalabaAdivinarUppercase = PalabraAdivinar.ToUpper();
-            char Letra = ;
+            char Letra = ' ';
             int Intentos = 10;
             bool gano = false;
             int LetrasReveladas = 0;
 
-            StringBuilder displayToPlayer = new StringBuilder(PalabraAdivinar.Length);
+            StringBuilder Despliegue = new StringBuilder(PalabraAdivinar.Length);
             for (int i = 0; i < PalabraAdivinar.Length; i++)
-                displayToPlayer.Append('_');
+                Despliegue.Append('_');
 
             List<char> LetrasAdivinadas = new List<char>();
             List<char> LetrasErroneas = new List<char>();
@@ -46,9 +46,43 @@ namespace Hangman
                     continue;
                 }
 
+                if (PalabaAdivinarUppercase.Contains(guess))
+                {
+                    LetrasAdivinadas.Add(guess);
 
+                    for (int i = 0; i < PalabraAdivinar.Length; i++)
+                    {
+                        if (PalabaAdivinarUppercase[i] == guess)
+                        {
+                            Despliegue[i] = PalabraAdivinar[i];
+                            LetrasReveladas++;
+                        }
+                    }
+
+                    if (LetrasReveladas == PalabraAdivinar.Length)
+                        gano = true;
+                }
+                else
+                {
+                    LetrasErroneas.Add(guess);
+
+                    Console.WriteLine("No existe '{0}' ", guess);
+                    Intentos--;
+                }
+
+                Console.WriteLine(Despliegue.ToString());
             }
+
+            if (gano)
+                Console.WriteLine("Ud gano!");
+            else
+                Console.WriteLine("Ud perdio! La palabra era '{0}'", PalabraAdivinar);
+
+            Console.Write("Presiona ENTER para salir...");
+            Console.ReadLine();
+
         }
-        
     }
+
 }
+       
