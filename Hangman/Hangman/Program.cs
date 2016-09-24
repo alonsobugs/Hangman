@@ -12,7 +12,7 @@ namespace Hangman
         {
 
             string Palabra = ;
-
+            cambio creado;
 
         }
     }
