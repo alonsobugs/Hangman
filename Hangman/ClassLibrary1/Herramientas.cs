@@ -9,7 +9,7 @@ namespace Hangman.BusinessLogic
     public class Herramientas
     {
 
-        public bool UnaLetraEsContenidaEnUnaPalabra(string unaLetra, string unaPalabra)
+        private bool UnaLetraEsContenidaEnUnaPalabra(string unaLetra, string unaPalabra)
         {
 
             bool elResultado;
